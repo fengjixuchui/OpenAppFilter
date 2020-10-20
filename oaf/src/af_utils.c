@@ -10,7 +10,7 @@ u_int32_t af_get_timestamp_sec(void)
 {
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(4,17,0)
 	struct timespec64 ts;
-	ktime_get_ts64(&ts);
+	ktime_get_real_ts64(&ts);
 	return (u_int32_t)ts.tv_sec;
 #else
 	struct timespec ts;
@@ -295,6 +295,7 @@ static int k_vsscanf(const char *buf, const char *fmt, va_list args)
 	}
 	return num;
 }
+
 
 int k_sscanf(const char *buf, const char *fmt, ...)
 {
